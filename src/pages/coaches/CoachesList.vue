@@ -4,7 +4,8 @@
   </section>
   <base-card>
     <div class="controls">
-      <base-button>Refresh</base-button>
+      <!-- below 'outline' mode is the class name that will dynamically be inserted to the button via props  -->
+      <base-button mode="outline">Refresh</base-button>
       <!-- below base button is a link. the link prop sets 'link' to true and the base button component will return router link -->
       <base-button link to="/register">Register as coach</base-button>
     </div>
