@@ -19,15 +19,15 @@
     <div class="form-control">
       <h2>Areas of expertise</h2>
       <div>
-        <input type="checkbox" id="frontend" value="frontend" />
+        <input type="checkbox" id="frontend" value="frontend" v-model="areas" />
         <label for="frontend">Frontend Development</label>
       </div>
       <div>
-        <input type="checkbox" id="backend" value="backend" />
+        <input type="checkbox" id="backend" value="backend" v-model="areas" />
         <label for="frontend">Backend Development</label>
       </div>
       <div>
-        <input type="checkbox" id="career" value="career" />
+        <input type="checkbox" id="career" value="career" v-model="areas" />
         <label for="frontend">Career Advisory</label>
       </div>
     </div>
@@ -36,6 +36,7 @@
 </template>
 <script>
 export default {
+  emits: ['save-data'],
   data() {
     return {
       firstName: '',
@@ -46,6 +47,8 @@ export default {
     };
   },
   methods: {
+    // When user submits form, we will assign the local data to a new object and emit 'save-data' event along with the
+    // object to the coaches registration
     submitForm() {
       const formData = {
         first: this.firstName,
@@ -54,7 +57,7 @@ export default {
         rate: this.rate,
         areas: this.areas
       };
-      console.log(formData);
+      this.$emit('save-data', formData);
     }
   }
 };

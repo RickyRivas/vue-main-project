@@ -8,5 +8,14 @@ export default {
     // below will see if state.coaches is truthy && if there is atleast 1 coach in the list
     // if false => will output a string with the text 'no coaches available' or similar
     return state.coaches && state.coaches.length > 0;
+  },
+  isCoach(_, getters, _2, rootGetters) {
+    // grab the coaches array and assign it here to coaches
+    const coaches = getters.coaches;
+    // grab userId() from the rootGetters and assign it here to userId
+    const userId = rootGetters.userId;
+    // will return true by going through the coaches array and seeing if any of the coaches in the current array
+    // have an id that match the new userId from the new coach
+    return coaches.some(coach => coach.id === userId);
   }
 };

@@ -9,7 +9,9 @@
       <base-button mode="outline">Refresh</base-button>
       <!-- Since the base-button below is a path/link we set 'link' to true so it can be a router-link -->
       <!-- The logic for determining whether the base-button is a link or not is set in the root component-->
-      <base-button link to="/register">Register as coach</base-button>
+      <base-button v-if="!isCoach" link to="/register"
+        >Register as coach</base-button
+      >
     </div>
     <ul v-if="hasCoaches">
       <coach-item
@@ -67,6 +69,9 @@ export default {
     // if there is no data, the v-else text will output instead
     hasCoaches() {
       return this.$store.getters['coaches/hasCoaches'];
+    },
+    isCoach() {
+      return this.$store.getters['coaches/isCoach'];
     }
   },
   methods: {
