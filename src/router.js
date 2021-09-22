@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import CoachDetail from './pages/coaches/CoachesDetail.vue';
+import CoachDetail from './pages/coaches/CoachDetail.vue';
 import CoachesList from './pages/coaches/CoachesList.vue';
 import CoachRegistration from './pages/coaches/CoachesRegistration.vue';
 import ContactCoach from './pages/requests/ContactCoach.vue';
@@ -22,6 +22,8 @@ const router = createRouter({
       // dynamic route
       path: '/coaches/:id',
       component: CoachDetail,
+      // setting props to true allows props to be passed down to the coachDetail component
+      props: true,
       children: [
         {
           // this child will be loaded as /coaches/c1/contact
