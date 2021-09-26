@@ -6,7 +6,7 @@
   <base-card>
     <div class="controls">
       <!-- setting the mode to 'outline' will dynamically set the styles through props  -->
-      <base-button mode="outline">Refresh</base-button>
+      <base-button @click="loadCoaches" mode="outline">Refresh</base-button>
       <!-- Since the base-button below is a path/link we set 'link' to true so it can be a router-link -->
       <!-- The logic for determining whether the base-button is a link or not is set in the root component-->
       <base-button v-if="!isCoach" link to="/register"
@@ -74,10 +74,16 @@ export default {
       return this.$store.getters['coaches/isCoach'];
     }
   },
+  created() {
+    this.loadCoaches();
+  },
   methods: {
     // the updatedFilters data came through the custom event and provides the new updatedFilters array
     setFilters(updatedFilters) {
       this.activeFilters = updatedFilters;
+    },
+    loadCoaches() {
+      this.$store.dispatch('coaches/loadCoaches');
     }
   }
 };

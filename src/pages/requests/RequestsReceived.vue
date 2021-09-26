@@ -24,11 +24,11 @@ export default {
   computed: {
     // this gets the requests array and returns it for this component to use
     receivedRequests() {
-      return this.$store.getters['request/requests'];
+      return this.$store.getters['requests/requests'];
     },
     // this function is to see if there are any requests. if so the items will appear, not the v-else will render
     hasRequests() {
-      return this.$store.getters['request/hasRequests'];
+      return this.$store.getters['requests/hasRequests'];
     }
   }
 };
