@@ -17,5 +17,14 @@ export default {
     // will return true by going through the coaches array and seeing if any of the coaches in the current array
     // have an id that match the new userId from the new coach
     return coaches.some(coach => coach.id === userId);
+  },
+  shouldUpdate(state) {
+    const lastFetch = state.lastFetch;
+    if (!lastFetch) {
+      return true;
+    }
+    const currentTimeStamp = new Date().getTime();
+    // if more than a minute ago
+    return (currentTimeStamp - lastFetch) / 1000 > 60;
   }
 };

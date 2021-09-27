@@ -29,7 +29,8 @@ export default {
     // const responseData = await response.JSON()
 
     if (!response.ok) {
-      //error
+      const error = new Error(response.message || 'failed to fetch');
+      throw error;
     }
 
     context.commit(
@@ -40,7 +41,10 @@ export default {
   },
 
   // load coaches from firebase
-  async loadCoaches(context) {
+  async loadCoaches(context, payload) {
+    if (!payload.forceRefresh && !context.getters.shouldUpdate) {
+      return;
+    }
     // fetch all of the coaches
     const response = await fetch(
       `https://vue-http-demo-9e210-default-rtdb.firebaseio.com/coaches.json`
@@ -64,5 +68,6 @@ export default {
       coaches.push(coach);
     }
     context.commit('setCoaches', coaches);
+    context.commit('setFetchTimeStamp');
   }
 };
